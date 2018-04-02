@@ -1,0 +1,6 @@
+*.swp
+.netrwhist
+.netrwbook
+soft/
+vim.git.zip
+bandit.vba
