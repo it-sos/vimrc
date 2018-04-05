@@ -4,7 +4,7 @@ dist=$1
 if [ ! -n "$dist" ]; then
     echo 'usage : ./install.sh ~'
 elif [ -d $dist ]; then
-    config=".tmux.conf .vimrc"
+    config=".vimrc"
     for i in $config; do
         ln -sf `pwd`/$i $dist
     done
