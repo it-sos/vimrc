@@ -14,18 +14,16 @@ if [ -d 'vim.git' ]; then
             mv -uf $i $dist;
         fi
     done;
-
-    if [ $? -ne 0 ]; then
-        rm -rf vim.git/*
-    fi
 fi
 
 # 执行git pull拉取更新
-find bundle/ -name '.git'|while read i; do
+find bundle/ -name '.git' | while read i; do
     if [ -d $i ]; then
         cd ${i%/*};
         echo "$PWD => git pull";
+        git stash;
         git pull;
+        git stash pop;
         cd -
     fi
 
@@ -34,7 +32,7 @@ find bundle/ -name '.git'|while read i; do
         mkdir -m 0755 -p $dist
     fi
 
-    mv -f -u $i $dist
+    mv -uf $i $dist
 done;
 
 # 重新打包各git项目.git目录回vim.git.gip
