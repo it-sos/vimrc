@@ -14,8 +14,8 @@ set ls=2 "laststatus=2
 set statusline=[%F]%y%r%m%*[%{&encoding}]%=[Line:%l/%L,Column:%c][%p%%]
 set wildmenu
 set ch=1
-set sw=4
-set ts=4
+set sw=2
+set ts=2
 set ai
 set si
 set et
