@@ -1,7 +1,9 @@
 ## vim配置、插件 install ##
 ``` bash
-git clone git@ip:vim.git ~/.vim
-cd ~/.vim;
-./upgrade.sh // 升级
-./install.sh /dir // 在指定目录下安装
+$ git clone https://github.com/iTiTiTi/vimrc.git ~/.vim
+$ cd ~/.vim;
+# 在当前账号生效
+$ ./install.sh ~
+# 在 root 账号生效
+$ sudo ./install.sh ~
 ```
