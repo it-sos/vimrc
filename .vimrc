@@ -55,7 +55,8 @@ autocmd FileType vue syntax sync fromstart
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
 let g:syntastic_python_checkers = ['python3']
-let g:syntastic_php_checkers = ['php']
+"let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd', 'phplint', 'phpstan']
+let g:syntastic_php_checkers = ['php', 'phpmd', 'phpstan']
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
