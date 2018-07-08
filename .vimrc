@@ -27,7 +27,6 @@ set backspace=indent,eol,start
 "set rtp+=~/.vim/bundle/Vundle.vim/
 "call vundle#rc()
 "Bundle 'Syntastic'
-
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
@@ -63,6 +62,9 @@ set statusline+=%*
 let g:syntastic_python_checkers = ['python3']
 "let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd', 'phplint', 'phpstan']
 let g:syntastic_php_checkers = ['php', 'phpmd', 'phpstan']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_css_checkers = ['stylelint']
+let g:syntastic_html_checkers=['tidy', 'stylelint']
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
@@ -122,3 +124,59 @@ nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+
+" 设置
+let g:user_emmet_settings = {
+\ 'wxss': {
+\   'extends': 'css',
+\ },
+\ 'wxml': {
+\   'extends': 'html',
+\   'aliases': {
+\     'div': 'view',
+\     'span': 'text',
+\   },
+\  'default_attributes': {
+\     'block': [{'wx:for-items': '{{list}}','wx:for-item': '{{item}}'}],
+\     'navigator': [{'url': '', 'redirect': 'false'}],
+\     'scroll-view': [{'bindscroll': ''}],
+\     'swiper': [{'autoplay': 'false', 'current': '0'}],
+\     'icon': [{'type': 'success', 'size': '23'}],
+\     'progress': [{'precent': '0'}],
+\     'button': [{'size': 'default'}],
+\     'checkbox-group': [{'bindchange': ''}],
+\     'checkbox': [{'value': '', 'checked': ''}],
+\     'form': [{'bindsubmit': ''}],
+\     'input': [{'type': 'text'}],
+\     'label': [{'for': ''}],
+\     'picker': [{'bindchange': ''}],
+\     'radio-group': [{'bindchange': ''}],
+\     'radio': [{'checked': ''}],
+\     'switch': [{'checked': ''}],
+\     'slider': [{'value': ''}],
+\     'action-sheet': [{'bindchange': ''}],
+\     'modal': [{'title': ''}],
+\     'loading': [{'bindchange': ''}],
+\     'toast': [{'duration': '1500'}],
+\     'audio': [{'src': ''}],
+\     'video': [{'src': ''}],
+\     'image': [{'src': '', 'mode': 'scaleToFill'}],
+\   }
+\ },
+\}
+
+setl omnifunc=csscomplete#CompleteCSS
+let g:neomake_wxss_enabled_makers = ['stylelint']
+let g:neomake_wxml_enabled_makers = ['tidy']
+
+autocmd BufEnter * call s:SetWxapp()
+function! s:SetWxapp()
+  if &ft ==# 'javascript'
+    setl dictionary+=~/.vim/bundle/wxapp.vim/dict/js.dict
+  elseif &ft ==# 'wxml'
+    setl dictionary+=~/.vim/bundle/wxapp.vim/dict/wxml.dict
+  elseif &ft ==# 'wxss'
+    setl dictionary+=~/.vim/bundle/wxapp.vim/dict/wxss.dict
+  endif
+endfunction
