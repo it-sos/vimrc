@@ -30,7 +30,11 @@ set backspace=indent,eol,start
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
+
+" 文件浏览器
 nmap <F5> :NERDTreeToggle<cr>
+autocmd VimEnter * NERDTree
+let NERDTreeShowBookmarks=1
 
 " 代码分析工具
 nmap <silent> <F4> :TagbarToggle<CR>
