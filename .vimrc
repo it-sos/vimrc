@@ -63,7 +63,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " 语法检查
-let g:syntastic_python_checkers = ['python3']
+let g:syntastic_python_checkers = ['python3', 'python']
 "let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd', 'phplint', 'phpstan']
 let g:syntastic_php_checkers = ['php', 'phpmd', 'phpstan']
 let g:syntastic_javascript_checkers = ['eslint']
@@ -104,7 +104,7 @@ function! BuildTags()
     if g:proj_path == ''
         return 0
     endif
-    execute 'silent !find '.g:proj_path.' -path .git -prune -o -name "*.php" -o -name "*.phtml" -type f > '.g:ide.'cscope.files'
+    execute 'silent !find '.g:proj_path.' -path .git -prune -o -name "*.php" -o -name "*.py" -o -name "*.phtml" -type f > '.g:ide.'cscope.files'
     execute 'silent !cscope -bqk -i '.g:ide.'cscope.files -f '.g:ide.'cscope.out'
     execute 'silent :cscope kill  '.g:ide.'cscope.out'
     execute 'silent :cscope add '.g:ide.'cscope.out'
@@ -112,7 +112,7 @@ function! BuildTags()
     return 0
 endfunction
 call BuildTags()
-autocmd BufWritePre *.php :call BuildTags()
+autocmd BufWritePre *.(php|py) :call BuildTags()
 
 " 加载php类库代码
 let phplib_cscope = '/data1/phplib/.ide/cscope.out'
