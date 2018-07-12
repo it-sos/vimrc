@@ -31,6 +31,12 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+autocmd FileType wxss setlocal sw=2 ts=2
+autocmd FileType wxml setlocal sw=2 ts=2
+autocmd FileType html setlocal sw=2 ts=2
+autocmd FileType css setlocal sw=2 ts=2
+autocmd FileType javascript setlocal sw=2 ts=2
+
 " 文件浏览器
 nmap <F5> :NERDTreeToggle<cr>
 autocmd VimEnter * NERDTree
@@ -68,7 +74,8 @@ let g:syntastic_python_checkers = ['python3', 'python']
 let g:syntastic_php_checkers = ['php', 'phpmd', 'phpstan']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_css_checkers = ['stylelint']
-let g:syntastic_html_checkers=['tidy', 'stylelint']
+"let g:syntastic_html_checkers=['tidy', 'stylelint']
+let g:syntastic_html_checkers=['tidy']
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
@@ -170,7 +177,7 @@ let g:user_emmet_settings = {
 \ },
 \}
 
-setl omnifunc=csscomplete#CompleteCSS
+autocmd FileType wxss setl omnifunc=csscomplete#CompleteCSS
 let g:neomake_wxss_enabled_makers = ['stylelint']
 let g:neomake_wxml_enabled_makers = ['tidy']
 
