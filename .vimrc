@@ -37,6 +37,8 @@ autocmd FileType html setlocal sw=2 ts=2
 autocmd FileType css setlocal sw=2 ts=2
 autocmd FileType javascript setlocal sw=2 ts=2
 
+let javascript_enable_domhtmlcss=1
+
 " 文件浏览器
 nmap <F5> :NERDTreeToggle<cr>
 autocmd VimEnter * NERDTree
